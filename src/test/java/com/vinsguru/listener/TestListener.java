@@ -16,6 +16,7 @@ public class TestListener implements ITestListener {
         String htmlImageFormat = "<img width=700px src='data:image/png;base64,%s' />";
         String htmlImage = String.format(htmlImageFormat, screenshot);
         Reporter.log(htmlImage);
+        //1
     }
 
 }
