@@ -16,9 +16,20 @@ pipeline {
         }
 
         stage("Push Image") {
+            environment {
+                DOCKER_HUB = credentials('dockerhub-cred')
+            }
+
             steps {
+                bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
                 bat "docker push alexyarm/selenium"
             }
+        }
+    }
+
+    post {
+        always {
+            bat "docker logout"
         }
     }
 }
